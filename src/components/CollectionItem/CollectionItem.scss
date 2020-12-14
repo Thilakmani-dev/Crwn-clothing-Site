@@ -1,0 +1,50 @@
+.collection-item {
+  width: 22vw;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
+  position: relative;
+  padding: 0 25px 0 45px;
+  transition: all 0.3s ease;
+
+  .image {
+    width: 100%;
+    height: 95%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 5px;
+  }
+
+  &:hover {
+    .custom-button {
+      display: flex;
+      transition: all 0.3s ease;
+    }
+  }
+
+  .custom-button {
+    width: 70%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+    transition: all 0.3s ease;
+  }
+  .collection-footer {
+    width: 100%;
+    height: 5%;
+    display: grid;
+    grid-template-columns: 1fr 0.2fr;
+    font-size: 18px;
+
+    .name {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .price {
+      justify-self: end;
+    }
+  }
+}
