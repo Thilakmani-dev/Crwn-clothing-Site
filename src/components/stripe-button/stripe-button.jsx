@@ -3,7 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
   const publishableKey =
-    "pk_test_51HDnhsDo4oDyzQeKbDLPGGTEm0srO0HhDn43GlRTLnNEkFNqDbHSaaZV52KDKfSg1vs22jlWY7H5YtoDMdUZ4LyE004mtRyg1C";
+    "pk_test_51HmkQdK2dQwffeSRDHf2mWTiNEHufq5RmGRCF3m4zedGj8LP1P41xZ7fMCGdpT8AFIDvoYgrKG3ZIzTqxAZMVSPT002X0D3Anf";
 
   const onToken = (token) => {
     console.log(token);
@@ -13,7 +13,7 @@ const StripeCheckoutButton = ({ price }) => {
   return (
     <StripeCheckout
       label="Pay Now"
-      name="CRWN CLothing Ltd"
+      name="Mani Online Shopping Ltd"
       billingAddress
       shippingAddress
       image="https://stripe.com/img/documentation/checkout/marketplace.png"

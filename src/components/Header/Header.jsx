@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { GrCatalogOption } from "react-icons/gr";
-import { auth } from "../../firebase/firebase.utility";
 import { AiFillHome, AiTwotoneShopping } from "react-icons/ai";
 import { GoSignIn, GoSignOut } from "react-icons/go";
 import { IconContext } from "react-icons";

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./SignIn.scss";
 import { connect } from "react-redux"
 import FormInput from "../FormInput/FormInput";
@@ -8,26 +8,21 @@ import { VscSignIn } from "react-icons/vsc";
 import { IconContext } from "react-icons";
 // import { auth, signInWithGoogle } from "../../firebase/firebase.utility";
 import { googleSignInStart, emailSignInStart } from "../../redux/user/user-actions"
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
+const SignIn = ({emailSignInStart,googleSignInStart}) => {
+  
+const [userCredentials,setCredentials] = useState({email:'',password:''});
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
-
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
 
-    this.setState({ [name]: value });
+    setCredentials({...userCredentials,[name]:value});
   };
+  const { email, password } = userCredentials;
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { emailSignInStart } = this.props;
-    const { email, password } = this.state;
+
+    
     // try {
     //   await auth.signInWithEmailAndPassword(email, password);
     //   this.setState({ email: "", password: "" });
@@ -36,29 +31,28 @@ class SignIn extends Component {
     // }
     emailSignInStart(email, password);
   };
-  render() {
-    const { googleSignInStart } = this.props;
+
     return (
       <IconContext.Provider value={{ size: "28px" }}>
         <div className="sign-in" style={{ textAlign: "center" }}>
           <h2 className="title">i already have an account</h2>
           <span>Sign up with E-Mail and Password</span>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <FormInput
               name="email"
               type="email"
-              handleChange={this.handleChange}
-              value={this.state.email}
+              handleChange={handleChange}
+              value={email}
               label="Email"
               required
             />
             <FormInput
               name="password"
               type="password"
-              value={this.state.password}
+              value={password}
               required
               label="Password"
-              handleChange={this.handleChange}
+              handleChange={handleChange}
             />
             <CustomButton type="submit">
               <VscSignIn className="icon" />
@@ -77,7 +71,6 @@ class SignIn extends Component {
       </IconContext.Provider>
     );
   }
-}
 
 const mapDispatchToProps = (dispatch) => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
