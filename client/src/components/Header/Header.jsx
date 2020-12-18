@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { GrCatalogOption } from "react-icons/gr";
+import { auth } from "../../firebase/firebase.utility";
 import { AiFillHome, AiTwotoneShopping } from "react-icons/ai";
 import { GoSignIn, GoSignOut } from "react-icons/go";
 import { IconContext } from "react-icons";
@@ -15,8 +16,12 @@ import {
   LogoContainer,
   OptionsContainer,
   OptionLink,
+  HamburgerContainer, MenuContainer
 } from "./Header.styles";
+import { Twirl as Hamburger } from 'hamburger-react'
+
 const Header = ({ currentUser, cartDropdownHidden, signOutStart }) => {
+  const [isOpen, setOpen] = useState(false)
   return (
     <HeaderContainer>
       <IconContext.Provider value={{ size: "40px", color: "#214252" }}>
@@ -49,8 +54,37 @@ const Header = ({ currentUser, cartDropdownHidden, signOutStart }) => {
           )}
         <CartIcon />
       </OptionsContainer>
+      <HamburgerContainer>
+        <Hamburger size={28} toggled={isOpen} toggle={setOpen} />
+        {
+          isOpen ?
+            <MenuContainer>
+              <OptionLink to="/" onClick={() => setOpen(false)}>
+                Home
+        </OptionLink>
+              <OptionLink to="/shop" onClick={() => setOpen(false)}>
+                {" "}
+          Shop
+        </OptionLink> <OptionLink to="/checkout" onClick={() => setOpen(false)}>
+                {" "}
+          Checkout
+        </OptionLink>
+              {currentUser ? (
+                <OptionLink as="div" onClick={signOutStart}>
+                  Sign Out
+                </OptionLink>
+              ) : (
+                  <OptionLink to="/signinandsignup" onClick={() => setOpen(false)}>
+                    {" "}
+            Sign In
+                  </OptionLink>
+                )}
+            </MenuContainer>
+            : null
+        }
+      </HamburgerContainer>
       {cartDropdownHidden ? null : <CartDropDown />}
-    </HeaderContainer>
+    </HeaderContainer >
   );
 };
 

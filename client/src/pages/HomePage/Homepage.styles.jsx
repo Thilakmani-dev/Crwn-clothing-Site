@@ -6,6 +6,6 @@ export const HomepageContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100vw;
-  padding: 0 10px;
   margin: 0 auto;
+  padding-top:80px;
 `;
