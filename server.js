@@ -29,6 +29,10 @@ app.listen(port,error=> {
     console.log("Server is listening on port "+port);
 });
 
+app.get('/service-worker.js',(req,res)=>{
+    res.sendFile(path.resolve(__diname,'..','build','service-worker.js')); 
+});
+
 app.post('/payment',(req,res)=>{
     const body = {
         source:req.body.token.id,
